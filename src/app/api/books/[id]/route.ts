@@ -6,12 +6,14 @@ import { prisma } from '@/lib/prisma'; // Asegúrate de que esta sea la ruta cor
 // //////////////////////////////////////////////////////
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
+
     const book = await prisma.book.findUnique({
       where: {
-        id: params.id,
+        id,
       },
       include: {
         author: true, // Incluye la información del autor
@@ -37,9 +39,10 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
     const body = await request.json();
     const {
       title,
@@ -79,7 +82,7 @@ export async function PUT(
     }
 
     const book = await prisma.book.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         description,
@@ -125,11 +128,13 @@ export async function PUT(
 // //////////////////////////////////////////////////////
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
+
     await prisma.book.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({
