@@ -24,3 +24,47 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Dashboard-specific color overrides (only CSS changes) */
+/* Targets the dashboard main which uses classes: min-h-screen bg-gray-50 py-8 px-4 */
+main.min-h-screen.bg-gray-50 {
+  /* soft blue page background */
+  background-color: #f3f8ff;
+}
+
+/* Cards inside dashboard: slightly tinted and subtle blue border/shadow */
+main.min-h-screen.bg-gray-50 .bg-white {
+  background-color: #ffffff;
+  border: 1px solid rgba(11,61,145,0.06);
+  box-shadow: 0 6px 18px rgba(11,61,145,0.04);
+}
+
+/* Headings on dashboard: deeper blue */
+main.min-h-screen.bg-gray-50 h1,
+main.min-h-screen.bg-gray-50 h2,
+main.min-h-screen.bg-gray-50 h3 {
+  color: #0b3d91;
+}
+
+/* Primary buttons in dashboard: brighter blue */
+main.min-h-screen.bg-gray-50 .bg-blue-600 {
+  background-color: #0b61ff;
+}
+main.min-h-screen.bg-gray-50 .bg-blue-600:hover {
+  background-color: #094fe6;
+}
+
+/* Danger buttons in dashboard: stronger red */
+main.min-h-screen.bg-gray-50 .bg-red-600 {
+  background-color: #d7263d;
+}
+main.min-h-screen.bg-gray-50 .bg-red-600:hover {
+  background-color: #b21b32;
+}
+
+/* Muted text tone for dashboard lists */
+main.min-h-screen.bg-gray-50 .text-gray-500,
+main.min-h-screen.bg-gray-50 .text-gray-600 {
+  color: #6b7280;
+}
+

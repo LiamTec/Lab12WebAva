@@ -4,10 +4,8 @@ import { prisma } from '@/lib/prisma'; // Asegúrate de que esta sea la ruta cor
 // //////////////////////////////////////////////////////
 // // GET - Obtener un autor específico por ID
 // //////////////////////////////////////////////////////
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: Request, context: { params: any }) {
+  const params = await context.params;
   try {
     const author = await prisma.author.findUnique({
       where: {
@@ -46,10 +44,8 @@ export async function GET(
 // //////////////////////////////////////////////////////
 // // PUT - Actualizar un autor
 // //////////////////////////////////////////////////////
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: Request, context: { params: any }) {
+  const params = await context.params;
   try {
     const body = await request.json();
     const { name, email, bio, nationality, birthYear } = body;
@@ -107,10 +103,8 @@ export async function PUT(
 // //////////////////////////////////////////////////////
 // // DELETE - Eliminar un autor
 // //////////////////////////////////////////////////////
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: Request, context: { params: any }) {
+  const params = await context.params;
   try {
     await prisma.author.delete({
       where: {
